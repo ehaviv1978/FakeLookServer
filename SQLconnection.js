@@ -4,11 +4,13 @@ const config = {
     driver: 'msnodesqlv8',
     database: 'FakeLook'
 };
-
-try {
-    await sql.connect(config)        
-} catch (error) {
-    console.log(error)
+async function fun() {
+    try {
+        await sql.connect(config)
+    } catch (error) {
+        console.log(error)
+    }
 }
+fun();
 
 module.exports = sql;
