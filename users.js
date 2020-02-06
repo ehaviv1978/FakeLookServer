@@ -1,24 +1,35 @@
 app = require('./index');
-const sql = require("./SQLconnection");
-const pool1Connect = sql.connect();
+const pool = require("./SQLconnection");
 
 app.get('/api/users', async (req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    var users = await request.execute('allUsers');
-    res.send(users);
+    try {
+        const conection = await pool;
+        const users = await conection.request().execute('allUsers');
+        res.send(users);
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });
 
 app.post('/api/users', async(req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    request.execute('addUser');
-    res.send('User add');
+    try {
+        const conection = await pool;
+        await conection.request().execute('addUser');
+        res.send('User add');
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });
 
 app.delete('/api/users', async (req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    request.execute('deleteLastUser');
-    res.send('Last User Deleted');
+    try {
+        const conection = await pool;
+        await conection.request().execute('deleteLastUser');
+        res.send('Last User Deleted');
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });

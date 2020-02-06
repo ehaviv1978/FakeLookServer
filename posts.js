@@ -1,23 +1,35 @@
 app = require('./index');
-const sql = require("./SQLconnection");
-const pool1Connect = sql.connect();
+const pool = require("./SQLconnection");
 
 app.get('/api/posts', async (req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    res.send(await request.query('select * from Posts'));
+    try {
+        const conection = await pool;
+        const posts = await conection.request().query('select * from Posts');
+        res.send(posts);
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });
 
 app.post('/api/posts', async (req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    request.execute('AddPost');
-    res.send("Post added!");
+    try {
+        const conection = await pool;
+        await conection.request().execute('AddPost');
+        res.send("Post added!");
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });
 
 app.delete('/api/posts', async (req, res) => {
-    await pool1Connect; // ensures that the pool has been created
-    const request = sql.request();
-    request.execute('deleteLastPost');
-    res.send('Last Post deleted!');
+    try {
+        const conection = await pool;
+        await conection.request().execute('deleteLastPost');
+        res.send('Last Post deleted!');
+    }
+    catch (err) {
+        console.log(err.message)
+    }
 });

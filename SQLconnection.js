@@ -5,6 +5,6 @@ const config = {
     database: 'FakeLook'
 };
 
-const pool1 = new sql.ConnectionPool(config);
+const pool = new sql.ConnectionPool(config).connect()
 
-module.exports = pool1;
+module.exports = pool
