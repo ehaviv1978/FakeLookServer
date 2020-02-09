@@ -5,7 +5,18 @@ app.get('/api/users', async (req, res) => {
     try {
         const conection = await pool;
         const users = await conection.request().execute('allUsers');
-        res.send(users);
+        res.send(users["recordset"]);
+    }
+    catch (err) {
+        console.log(err.message)
+    }
+});
+
+app.get('/api/users/:id', async (req, res) => {
+    try {
+        const conection = await pool;
+        const user = await conection.request().execute(`getUser ${req.params.id}`);
+        res.send(user["recordset"]);
     }
     catch (err) {
         console.log(err.message)

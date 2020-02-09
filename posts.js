@@ -5,7 +5,7 @@ app.get('/api/posts', async (req, res) => {
     try {
         const conection = await pool;
         const posts = await conection.request().query('select * from Posts');
-        res.send(posts);
+        res.send(posts["recordset"]);
     }
     catch (err) {
         console.log(err.message)
