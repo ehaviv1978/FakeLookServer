@@ -19,9 +19,27 @@ app.get('/api/users/:id', async (req, res) => {
         res.send(user["recordset"]);
     }
     catch (err) {
-        console.log(err.message)
+        try {
+            const conection = await pool;
+            const users = await conection.request().execute(`searchUsers ${String(req.params.id)}`);
+            res.send(users["recordset"]);
+        }
+        catch (err) {
+            console.log(err.message)
+        }
     }
 });
+
+// app.get('/api/users/:str', async (req, res) => {
+//     try {
+//         const conection = await pool;
+//         const users = await conection.request().execute(`searchUsers ${String(req.params.str)}`);
+//         res.send(users["recordset"]);
+//     }
+//     catch (err) {
+//         console.log(err.message)
+//     }
+// });
 
 app.post('/api/users', async(req, res) => {
     try {
