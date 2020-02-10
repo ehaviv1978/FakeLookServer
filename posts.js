@@ -1,5 +1,7 @@
 app = require('./index');
 const pool = require("./SQLconnection");
+const express = require('express');
+app.use(express.json());
 
 app.get('/api/posts', async (req, res) => {
     try {
@@ -15,7 +17,7 @@ app.get('/api/posts', async (req, res) => {
 app.post('/api/posts', async (req, res) => {
     try {
         const conection = await pool;
-        await conection.request().execute('AddPost');
+        await conection.request().execute(`AddPost ${req.body.Image}, ${req.body.UserId}, ${req.body.Description}, ${req.body.Location}`);
         res.send("Post added!");
     }
     catch (err) {
