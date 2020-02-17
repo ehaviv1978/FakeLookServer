@@ -6,8 +6,8 @@ app.use(express.json());
 app.get('/api/posts', async (req, res) => {
     try {
         const conection = await pool;
-        const posts = await conection.request().query('select * from Posts');
-        res.send(posts["recordset"]);
+        const posts = await conection.request().execute('allPosts');
+        res.send(posts.recordset);
     }
     catch (err) {
         console.log(err.message)
