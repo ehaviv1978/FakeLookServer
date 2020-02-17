@@ -1,31 +1,20 @@
-app = require('./index');
+app = require('./app');
 const express = require('express');
 //const cors = require('cors');
 app.use(express.json());
 //app.use(express.cors);
-const pool = require("./SQLconnection");
+const pool = require("./dal/SQLconnection");
 
-app.get('/api/users', async (req, res) => {
+app.get('/api/users/:searchParams', async (req, res) => {
     try {
         const conection = await pool;
-        const users = await conection.request().execute('allUsers');
-        res.send(users.recordset);
-    }
-    catch (err) {
-        console.log(err.message)
-    }
-});
-
-app.get('/api/users/:id', async (req, res) => {
-    try {
-        const conection = await pool;
-        const user = await conection.request().execute(`getUser ${req.params.id}`);
+        const user = await conection.request().execute(`getUser ${req.params.searchParams}`);
         res.send(user.recordset);
     }
     catch (err) {
         try {
             const conection = await pool;
-            const users = await conection.request().execute(`searchUsers ${String(req.params.id)}`);
+            const users = await conection.request().execute(`searchUsers ${String(req.params.searchParams)}`);
             res.send(users["recordset"]);
         }
         catch (err) {
@@ -48,7 +37,8 @@ app.get('/api/users/:id', async (req, res) => {
 app.post('/api/users', async(req, res) => {
     try {
         const conection = await pool;
-        await conection.request().execute(`addUser ${req.body.FirstName}, ${req.body.LastName}, ${req.body.Password}, ${req.body.BirthDate}, ${req.body.Job}, ${req.body.Address}`);
+        await conection.request().execute(`addUser ${req.body.FirstName}, ${req.body.LastName}, 
+        ${req.body.Password}, ${req.body.BirthDate}, ${req.body.Job}, ${req.body.Address}`);
         res.send('User add');
     }
     catch (err) {

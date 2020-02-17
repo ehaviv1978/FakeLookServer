@@ -1,0 +1,38 @@
+const  userRepo  = require('../dal/userRepository')
+
+class userController{
+    async getAllUsers(req,res){
+        try{
+          const result = await userRepo.getAllUsers();
+          res.json(result.recordset);
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
+    async getUser(req,res){
+        try{
+            const result = await userRepo.GetUsersByFullName(req);
+            res.json(result["recordset"]);
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
+
+    async AddUser(req,res){
+        try{
+            const result = await userRepo.AddUser(req);
+            res.json(result.recordset);    
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
+}   
+
+const controller = new userController()
+module.exports = controller;
