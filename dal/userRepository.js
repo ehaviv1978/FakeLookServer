@@ -12,15 +12,15 @@ class userRepository{
     async GetUserById(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('UserId',sql.Int,req.params.searchParams)
+        .input('userId',sql.Int,req.params.searchParams)
         .execute('getUser');
         return result;
     }
     
-    async GetUsersByFullName(req){
+    async SearchUsers(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('str',sql.VarChar(50),req.params.searchParams)
+        .input('searchParam',sql.VarChar(100),req.params.searchParams)
         .execute('searchUsers');
         return result;
     }
@@ -28,12 +28,13 @@ class userRepository{
     async AddUser(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('FirstName',sql.VarChar(50),req.body.FirstName)
-        .input('LastName' , sql.VarChar(50),req.body.LastName)
-        .input('Password' , sql.VarChar(50),req.body.Password)
-        .input('BirthDate' , sql.Date,req.body.Date )
-        .input('Job' ,VarChar(MAX),req.body.Job)
-        .input('Adress' ,VarChar(MAX),req.body.Address)
+        .input('firstName',sql.VarChar(50),req.body.firstName)
+        .input('lastName' , sql.VarChar(50),req.body.lastName)
+        .input('password' , sql.VarChar(30),req.body.password)
+        .input('birthDate' , sql.Date,req.body.date)
+        .input('address' ,sql.VarChar(50),req.body.address)
+        .input('job' ,sql.VarChar(50),req.body.job)
+        .input('picture', sql.VarBinary(MAX),req.body.picture)
         .execute('addUser');
         return result;
     }

@@ -13,17 +13,14 @@ class postController{
     }
     async addPost(req , res){
         try {
-          if(req.body.userID != null) {
             const result = await postRepo.addPost(req);
             res.json(result);
-          } else {
-            res.send('please fill all the details!');
-          }
-        } catch (error) {
+        } 
+        catch (error) {
           res.status(500)
           res.send(error.message)
       }
-      }
+    }
 }
 const controller = new postController()
 module.exports = controller;

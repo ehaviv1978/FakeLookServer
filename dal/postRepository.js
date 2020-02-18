@@ -12,11 +12,11 @@ class postRepository{
     async addPost(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('Image',sql.VarChar , req.body.Image)
-        .input('UserId',sql.int , req.body.UserId)
-        .input('Description',sql.VarChar(MAX),req.body.Description)
-        .input('LatGPS',sql.Float , req.body.latGPS)
-        .input('LongGPS' , sql.Float , req.body.longGPS)
+        .input('image',sql.VarBinary(MAX) , req.body.image)
+        .input('userId',sql.int , req.body.userId)
+        .input('description',sql.VarChar(200),req.body.description)
+        .input('latGPS',sql.Float , req.body.latGPS)
+        .input('longGPS' , sql.Float , req.body.longGPS)
         .execute('AddPost');
         return result;
     }
