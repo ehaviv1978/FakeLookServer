@@ -11,7 +11,7 @@ class postController{
             res.send(error.message)
         }
     }
-    async addPost(req , res){
+    async addPost(req,res){
         try {
             const result = await postRepo.addPost(req);
             res.json(result);

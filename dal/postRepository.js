@@ -10,15 +10,17 @@ class postRepository{
     }
     
     async addPost(req){
+        console.log(req.body);
+
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('image',sql.VarBinary(MAX) , req.body.image)
-        .input('userId',sql.int , req.body.userId)
-        .input('description',sql.VarChar(200),req.body.description)
-        .input('latGPS',sql.Float , req.body.latGPS)
+        .input('userId',sql.Int,req.body.userId)
+        .input('latGPS' , sql.Float ,req.body.latGPS)
         .input('longGPS' , sql.Float , req.body.longGPS)
-        .execute('AddPost');
-        return result;
+        .input('picture',sql.VarBinary() , req.body.image)
+        .input('description',sql.VarChar(200),req.body.description)
+        .execute('addPost')
+         return result;
     }
 }
 const postRepo = new postRepository()
