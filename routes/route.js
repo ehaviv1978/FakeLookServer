@@ -9,6 +9,7 @@ const router = express.Router();
  router.post('/api/posts' , postController.addPost);
  router.get('/api/users' , userController.getAllUsers);
  router.get('/api/users/:searchParams' ,userController.getUser);
+ router.post('/api/users/picture' , userController.changeUserPicture);
 
 
 module.exports = router;

@@ -11,6 +11,16 @@ class userController{
             res.send(error.message);
         }
     }
+    async changeUserPicture(req,res){
+        try{
+          const result = await userRepo.ChangeUserPicture(req);
+          res = "Profie picture changed";
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
     async getUser(req,res){
         try{
             const result = await userRepo.SearchUsers(req);
