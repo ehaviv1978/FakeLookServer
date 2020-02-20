@@ -20,7 +20,7 @@ class userRepository{
     async SearchUsers(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        input('userId',sql.Int,req.params.searchParams)
+        .input('searchParam',sql.VarChar(100),req.params.searchParams)
         .execute('searchUsers');
         return result;
     }

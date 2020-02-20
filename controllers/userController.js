@@ -23,6 +23,7 @@ class userController{
     }
     async getUser(req,res){
         try{
+            console.log(req.params)
             const result = await userRepo.SearchUsers(req);
             res.json(result["recordset"]);
         }
