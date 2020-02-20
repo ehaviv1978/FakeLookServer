@@ -20,8 +20,17 @@ class userRepository{
     async SearchUsers(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('searchParam',sql.VarChar(100),req.params.searchParams)
+        input('userId',sql.Int,req.params.searchParams)
         .execute('searchUsers');
+        return result;
+    }
+
+    async ChangeUserPicture(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('userId', sql.Int, req.body.userId)
+        .input('fileUrl',sql.VarChar(sql.MAX),req.body.file)
+        .execute('changeUserPicture');
         return result;
     }
 
@@ -34,7 +43,7 @@ class userRepository{
         .input('birthDate' , sql.Date,req.body.date)
         .input('address' ,sql.VarChar(50),req.body.address)
         .input('job' ,sql.VarChar(50),req.body.job)
-        .input('picture', sql.VarBinary(MAX),req.body.picture)
+        .input('picture', sql.VarChar(sql.MAX),req.body.picture)
         .execute('addUser');
         return result;
     }
