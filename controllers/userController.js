@@ -13,7 +13,7 @@ class userController{
     }
     async getUser(req,res){
         try{
-            const result = await userRepo.GetUsersByFullName(req);
+            const result = await userRepo.SearchUsers(req);
             res.json(result["recordset"]);
         }
         catch(error){
