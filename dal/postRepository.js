@@ -17,7 +17,7 @@ class postRepository{
         .input('userId',sql.Int,req.body.userId)
         .input('latGPS' , sql.Float ,req.body.latGPS)
         .input('longGPS' , sql.Float , req.body.longGPS)
-        .input('picture',sql.VarBinary() , req.body.image)
+        .input('picture',sql.VarChar(sql.MAX) , req.body.picture)
         .input('description',sql.VarChar(200),req.body.description)
         .execute('addPost')
          return result;
