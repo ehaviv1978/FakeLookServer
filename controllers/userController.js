@@ -14,7 +14,8 @@ class userController{
     async changeUserPicture(req,res){
         try{
           const result = await userRepo.ChangeUserPicture(req);
-          res = "Profie picture changed";
+          console.log(result.rowsAffected);
+          res.send(result.rowsAffected);
         }
         catch(error){
             res.status(500);
@@ -33,10 +34,11 @@ class userController{
         }
     }
 
-    async AddUser(req,res){
+    async addUser(req,res){
         try{
-            const result = await userRepo.AddUser(req);
-            res.json(result.recordset);    
+            console.log(req.body);
+            const result = await userRepo.addUser(req.body);
+             res.json(result);    
         }
         catch(error){
             res.status(500);
