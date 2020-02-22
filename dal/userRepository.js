@@ -9,6 +9,14 @@ class userRepository{
         return result;
     }
 
+    async getUserByEmail(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('email',sql.NVarChar(100),req.email)
+        .execute('getUserByEmail');
+        return result;
+    }
+
     async GetUserById(req){
         const pool = await poolPromise;
         const result = await pool.request()
