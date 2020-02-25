@@ -10,7 +10,6 @@ class postRepository{
     }
     
     async addPost(req){
-        console.log(req.body);
 
         const pool = await poolPromise;
         const result = await pool.request()
