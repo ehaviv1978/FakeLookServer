@@ -14,8 +14,7 @@ class postController{
     async addPost(req,res){
         try {
             const result = await postRepo.addPost(req);
-            res.json(result);
-        } 
+            res.send(result.rowsAffected);        } 
         catch (error) {
           res.status(500)
           res.send(error.message)
