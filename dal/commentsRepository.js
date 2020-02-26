@@ -10,9 +10,6 @@ class commentRepository{
     }
     
     async addComment(req){
-        console.log(req.body);
-        console.log(req.params.postId);
-        console.log(req.body.commentContent);
         const pool = await poolPromise;
         const result = await pool.request()
         .input('postId',sql.Int,req.params.postId)

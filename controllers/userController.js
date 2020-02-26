@@ -24,7 +24,6 @@ class userController{
     async changeUserPicture(req,res){
         try{
           const result = await userRepo.ChangeUserPicture(req);
-          console.log(result.rowsAffected);
           res.send(result.rowsAffected);
         }
         catch(error){
@@ -34,7 +33,6 @@ class userController{
     }
     async getUser(req,res){
         try{
-            console.log(req.params)
             const result = await userRepo.SearchUsers(req);
             res.json(result["recordset"]);
         }
@@ -46,7 +44,6 @@ class userController{
 
     async addUser(req,res){
         try{
-            console.log(req.body);
             const result = await userRepo.addUser(req.body);
              res.json(result);    
         }
