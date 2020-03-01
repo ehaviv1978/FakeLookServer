@@ -3,7 +3,7 @@ const  postRepo  = require('../dal/postRepository')
 class postController{
     async getAllPosts(req,res){
         try{
-          const result = await postRepo.getAllPosts();
+          const result = await postRepo.getAllPosts(req);
           res.json(result.recordset);
         }
         catch(error){

@@ -8,7 +8,7 @@ class commentController{
         }
         catch(error){
             res.status(500)
-            res.send(error.stack)
+            res.send(error.message) //make it send error.stack in dev
         }
     }
     async addComment(req,res){

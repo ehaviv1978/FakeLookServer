@@ -2,15 +2,15 @@ const { sql,poolPromise } = require('./SQLconnection');
 
 class postRepository{
     
-    async getAllPosts(){
+    async getAllPosts(req){
         const pool = await poolPromise;
         const result = await pool.request()
+        .input('userId',sql.Int,req.params.userId)
         .execute('allPosts');
         return result;
     }
     
     async addPost(req){
-
         const pool = await poolPromise;
         const result = await pool.request()
         .input('userId',sql.Int,req.body.userId)
