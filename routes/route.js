@@ -18,8 +18,8 @@ router.post('/api/users/picture' , userController.changeUserPicture);
  router.get('/api/posts/:postId/comments', commentController.getAllComments);
  router.post('/api/posts/:postId/comments', commentController.addComment);
  router.get('/api/posts/:postId/likes',postLikeController.getPostLikes);
- router.post('/api/posts/:postId/likes',postLikeController.addPostLike);
- router.delete('/api/posts/:postId/likes',postLikeController.removePostLike);
+ router.post('/api/posts/:postId/:userId',postLikeController.addPostLike);
+ router.delete('/api/posts/:postId/:userId',postLikeController.removePostLike);
 
 
 module.exports = router;

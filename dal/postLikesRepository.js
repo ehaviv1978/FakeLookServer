@@ -6,7 +6,7 @@ class PostLikesRepository{
         const pool = await poolPromise;
         const result = await pool.request()
         .input('postId',sql.Int,req.params.postId)
-        .input('userId' , sql.Int ,req.body.userId)
+        .input('userId' , sql.Int ,req.params.userId)
         .execute('addPostLike')
          return result;
     }
@@ -14,7 +14,7 @@ class PostLikesRepository{
         const pool = await poolPromise;
         const result = await pool.request()
         .input('postId',sql.Int,req.params.postId)
-        .input('userId' , sql.Int ,req.body.userId)
+        .input('userId' , sql.Int ,req.params.userId)
         .execute('removePostLike')
          return result;
     }
