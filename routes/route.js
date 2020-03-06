@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/api/users' , userController.getAllUsers);
 router.post('/api/users/addUser' , userController.addUser);
 router.get('/api/users/:searchParams' ,userController.getUser);
-router.get('/api/users/logIn/:email' ,userController.getUserByEmail);
+router.post('/api/users/logIn' ,userController.userLogIn);
 router.post('/api/users/picture' , userController.changeUserPicture);
  router.get('/api/posts/:userId', postController.getAllPosts);
  router.post('/api/posts' , postController.addPost);

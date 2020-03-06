@@ -11,9 +11,10 @@ class userController{
             res.send(error.message);
         }
     }
-    async getUserByEmail(req,res){
+    async userLogIn(req,res){
+        //console.log(req);
         try{
-            const result = await userRepo.getUserByEmail(req.params);
+            const result = await userRepo.userLogIn(req.body);
             res.json(result.recordset);
         }
         catch(error){
