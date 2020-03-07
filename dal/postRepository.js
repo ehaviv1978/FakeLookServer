@@ -21,6 +21,15 @@ class postRepository{
         .execute('addPost')
          return result;
     }
+
+    async getPost(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('userId',sql.Int,req.userId)
+        .input('postId',sql.Int,req.postId)
+        .execute('getPostById');
+        return result;
+    }
 }
 const postRepo = new postRepository()
 module.exports = postRepo;

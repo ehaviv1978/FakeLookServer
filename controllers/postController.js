@@ -20,6 +20,16 @@ class postController{
           res.send(error.message)
       }
     }
+    async getPost(req,res){
+        try {
+            const result = await postRepo.getPost(req.body);
+            res.json(result.recordset);
+        }
+        catch{
+            res.status(500)
+            res.send(error.message)
+        }
+    }
 }
 const controller = new postController()
 module.exports = controller;
