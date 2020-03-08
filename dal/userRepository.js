@@ -18,10 +18,10 @@ class userRepository{
         return result;
     }
 
-    async GetUserById(req){
+    async getUserById(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('userId',sql.Int,req.params.searchParams)
+        .input('userId',sql.Int,req.params.id)
         .execute('getUser');
         return result;
     }

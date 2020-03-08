@@ -32,7 +32,7 @@ class userController{
             res.send(error.message);
         }
     }
-    async getUser(req,res){
+    async searchUsers(req,res){
         try{
             const result = await userRepo.SearchUsers(req);
             res.json(result.recordset);
@@ -47,6 +47,17 @@ class userController{
         try{
             const result = await userRepo.addUser(req.body);
              res.json(result);    
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
+
+    async getUserById(req, res){
+        try{
+            const result = await userRepo.getUserById(req);
+            res.json(result.recordset);
         }
         catch(error){
             res.status(500);
