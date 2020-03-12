@@ -13,7 +13,7 @@ class commentRepository{
         const pool = await poolPromise;
         const result = await pool.request()
         .input('postId',sql.Int,req.params.postId)
-        .input('userId' , sql.Int ,req.body.userId)
+        .input('userId' , sql.Int ,req.userId)
         .input('commentContent' , sql.VarChar(50) , req.body.commentContent)
         .execute('addComment')
          return result;
