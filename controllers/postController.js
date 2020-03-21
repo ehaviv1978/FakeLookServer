@@ -30,6 +30,16 @@ class postController{
             res.send(error.message)
         }
     }
+    async searchPosts(req,res){
+        try{
+            const result = await postRepo.SearchPosts(req);
+            res.json(result.recordset);
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
 }
 const controller = new postController()
 module.exports = controller;

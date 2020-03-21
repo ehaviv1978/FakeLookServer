@@ -30,6 +30,14 @@ class postRepository{
         .execute('getPostById');
         return result;
     }
+
+    async SearchPosts(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('searchParam',sql.VarChar(100),req.params.searchParams)
+        .execute('searchPosts');
+        return result;
+    }
 }
 const postRepo = new postRepository()
 module.exports = postRepo;
