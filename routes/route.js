@@ -17,11 +17,13 @@ router.post('/api/users/logIn' ,userController.userLogIn);
 router.post('/api/users/picture' , userController.changeUserPicture);
  router.get('/api/userPosts/:userId', postController.getAllPosts);
  router.post('/api/posts' , postController.addPost);
- router.get('/api/posts/:postId/comments', commentController.getAllComments);
+ router.get('/api/posts/:postId/comments/:userId', commentController.getAllComments);
  router.post('/api/posts/:postId/comments', commentController.addComment);
  router.get('/api/posts/:postId/likes',postLikeController.getPostLikes);
  router.post('/api/posts/:postId/:userId',postLikeController.addPostLike);
  router.delete('/api/posts/:postId/:userId',postLikeController.removePostLike);
+ router.delete('/api/comments/:commentId/:userId',commentController.removeCommentLike);
+ router.get('/api/comments/:commentId/:userId',commentController.addCommentLike);
  router.post('/api/post',postController.getPost);
 
 

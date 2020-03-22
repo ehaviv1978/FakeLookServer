@@ -5,6 +5,7 @@ class commentRepository{
         const pool = await poolPromise;
         const result = await pool.request()
         .input('postId',sql.Int,req.params.postId)
+        .input('userId',sql.Int,req.params.userId)
         .execute('allComments')
         return result;
     }
@@ -18,6 +19,27 @@ class commentRepository{
         .execute('addComment')
          return result;
     }
+
+    async addCommentLike(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('userId' , sql.Int ,req.params.userId)
+        .input('commentId',sql.Int,req.params.commentId)
+        .execute('addCommentLike')
+         return result;
+    }
+
+    async removeCommentLike(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('userId' , sql.Int ,req.params.userId)
+        .input('commentId',sql.Int,req.params.commentId)
+        .execute('removeCommentLike')
+         return result;
+    }
+
+
+
 }
 
 const commentRepo = new commentRepository()
