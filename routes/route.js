@@ -25,6 +25,7 @@ router.post('/api/users/picture' , userController.changeUserPicture);
  router.delete('/api/comments/:commentId/:userId',commentController.removeCommentLike);
  router.get('/api/comments/:commentId/:userId',commentController.addCommentLike);
  router.post('/api/post',postController.getPost);
+ router.post('/api/users/:id/changePassword', userController.changePassword);
 
 
 module.exports = router;

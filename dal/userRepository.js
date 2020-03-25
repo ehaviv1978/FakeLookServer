@@ -34,6 +34,15 @@ class userRepository{
         return result;
     }
 
+    async changePassword(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('userId',sql.Int,req.params.id)
+        .input('password',sql.VarChar(30),req.body.password)
+        .execute('updatePassword');
+        return result;
+    }
+
     async ChangeUserPicture(req){
         const pool = await poolPromise;
         const result = await pool.request()
