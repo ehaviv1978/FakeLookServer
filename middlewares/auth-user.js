@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { key } = require ('../config');
 
 module.exports = function verifyUser(req,res,next) {
-  let token = req.headers['x-access-token'];
+   let token = req.header('authToken');
   if (!token) {
     return res.status(401).send({ auth: false, message: 'No token provided.' });
   }
