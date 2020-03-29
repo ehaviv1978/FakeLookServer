@@ -21,6 +21,29 @@ class commentController{
           res.send(error.message)
       }
     }
+
+    async addCommentLike(req,res){
+        try {
+            const result = await commentRepo.addCommentLike(req);
+            res.json(result);
+            // console.log(res);
+        } 
+        catch (error) {
+          res.status(500)
+          res.send(error.message)
+      }
+    }
+    async removeCommentLike(req,res){
+        try {
+            const result = await commentRepo.removeCommentLike(req);
+            res.json(result);
+            // console.log(res);
+        } 
+        catch (error) {
+          res.status(500)
+          res.send(error.message)
+      }
+    }
 }
 
 const controller = new commentController()

@@ -9,7 +9,6 @@ class authController{
             let hashedPassword = bcrypt.hashSync(req.body.password);
             req.body.password = hashedPassword;
             const result = await userRepo.addUser(req);
-            console.log(result);
             let token = jwt.sign({userId:result.recordset[0].userId},key,{
                 expiresIn:600 
             });
@@ -39,7 +38,9 @@ class authController{
             res.status(500);
             res.send(error.message);
         }
-    }}
+    }
+}
+
 
 const controller = new authController()
 module.exports = controller;

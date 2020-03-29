@@ -9,11 +9,11 @@ userRouter.get('/all' , userController.getAllUsers);
 userRouter.get('/:userId' , userController.getUserById);
 userRouter.get('/:searchParams',userController.searchUsers);
 userRouter.post('/changePic', userController.changeUserPicture);
+userRouter.post('/changePassword',userController.changePassword);
+
+// router.post('/api/users/:id/changePassword', userController.changePassword);
 
 
-// mainRouter.get('/api/users' , userController.getAllUsers);
-// mainRouter.get('/api/user/:id', userController.getUserById);
-// mainRouter.get('/api/users/:searchParams' ,userController.searchUsers);
-// mainRouter.post('/api/users/picture' , userController.changeUserPicture);
+
 
 module.exports = userRouter;

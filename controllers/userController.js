@@ -42,6 +42,18 @@ class userController{
             res.send(error.message);
         }
     }
+    async changePassword(req, res){
+        try{
+            let hashedPassword = bcrypt.hashSync(req.body.password);
+            req.body.password = hashedPassword;
+            const result = await userRepo.changePassword(req);
+            res.json(result.rowsAffected);
+        }
+        catch(error){
+            res.status(500);
+            res.send(error.message);
+        }
+    }
 }   
 
 const controller = new userController()
