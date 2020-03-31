@@ -38,6 +38,24 @@ class commentRepository{
          return result;
     }
 
+    async addCommentTag(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('commentId',sql.Int,req.params.id)
+        .input('tagContent',sql.VarChar(50),req.body.tagContent)
+        .execute('addCommentTag');
+        return result;
+    }
+
+    async deleteCommentTag(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('commentId',sql.Int,req.params.id)
+        .input('tagContent',sql.VarChar(50),req.body.tagContent)
+        .execute('removeCommentTag');
+        return result;
+    }
+
 
 
 }

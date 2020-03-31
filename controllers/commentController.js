@@ -4,6 +4,11 @@ class commentController{
     async getAllComments(req,res){
         try{
           const result = await commentRepo.getAllComments(req);
+          for (var record of result.recordset) {
+            if (record.commentTags != null) {
+                record.commentTags = record.commentTags.split(',');
+            }
+        }
           res.json(result.recordset);
         }
         catch(error){
@@ -26,7 +31,6 @@ class commentController{
         try {
             const result = await commentRepo.addCommentLike(req);
             res.json(result);
-            // console.log(res);
         } 
         catch (error) {
           res.status(500)
@@ -37,12 +41,33 @@ class commentController{
         try {
             const result = await commentRepo.removeCommentLike(req);
             res.json(result);
-            // console.log(res);
         } 
         catch (error) {
           res.status(500)
           res.send(error.message)
       }
+    }
+
+    async addCommentTag(req, res) {
+        try {
+            const result = await commentRepo.addCommentTag(req);
+            res.json(result.rowsAffected);
+        }
+        catch (error) {
+            res.status(500);
+            res.send(error.message);
+        }
+    }
+
+    async deleteCommentTag(req, res) {
+        try {
+            const result = await commentRepo.deleteCommentTag(req);
+            res.json(result.rowsAffected);
+        }
+        catch (error) {
+            res.status(500);
+            res.send(error.message);
+        }
     }
 }
 

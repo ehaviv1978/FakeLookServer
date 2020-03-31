@@ -27,5 +27,12 @@ router.post('/api/users/picture' , userController.changeUserPicture);
  router.post('/api/post',postController.getPost);
  router.post('/api/users/:id/changePassword', userController.changePassword);
 
+ router.post('/api/postTagAdd/:id',postController.addPostTag);
+ router.post('/api/postTagRemove/:id',postController.deletePostTag);
+ 
+ router.post('/api/commentTagAdd/:id',commentController.addCommentTag);
+ router.post('/api/commentTagRemove/:id',commentController.deleteCommentTag);
+
+
 
 module.exports = router;
