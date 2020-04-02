@@ -70,6 +70,17 @@ class postController {
             res.send(error.message);
         }
     }
+
+    async getMapPosts(req, res) {
+        try {
+            const result = await postRepo.getMapPosts(req);
+            res.json(result.recordset);
+        }
+        catch (error) {
+            res.status(500);
+            res.send(error.message);
+        }
+    }
 }
 const controller = new postController()
 module.exports = controller;

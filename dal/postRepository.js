@@ -56,6 +56,17 @@ class postRepository{
         .execute('removePostTag');
         return result;
     }
+
+    async getMapPosts(req){
+        const pool = await poolPromise;
+        const result = await pool.request()
+        .input('minLat',sql.Int,req.params.minLat)
+        .input('maxLat',sql.Int,req.params.maxLat)
+        .input('minLong',sql.Int,req.params.minLong)
+        .input('maxLong',sql.Int,req.params.maxLong)
+        .execute('getMapPosts');
+        return result;
+    }
 }
 const postRepo = new postRepository()
 module.exports = postRepo;
