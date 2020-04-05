@@ -26,7 +26,8 @@ router.post('/api/users/picture' , userController.changeUserPicture);
  router.get('/api/comments/:commentId/:userId',commentController.addCommentLike);
  router.post('/api/post',postController.getPost);
  router.post('/api/users/:id/changePassword', userController.changePassword);
- router.get('/api/posts/getMapPosts/:minLat/:maxLat/:minLong/:maxLong', postController.getMapPosts);
+ router.get('/api/posts/getMapPosts/:minLat/:maxLat/:minLong/:maxLong/:userId/:minDate/:maxDate/:range/:tag/:latGPS/:longGPS',
+  postController.getMapPosts);
 
  router.post('/api/postTagAdd/:id',postController.addPostTag);
  router.post('/api/postTagRemove/:id',postController.deletePostTag);

@@ -64,6 +64,13 @@ class postRepository{
         .input('maxLat',sql.Int,req.params.maxLat)
         .input('minLong',sql.Int,req.params.minLong)
         .input('maxLong',sql.Int,req.params.maxLong)
+        .input('userId',sql.Int,req.params.userId)
+        .input('minDate',sql.Date,req.params.minDate)
+        .input('maxDate',sql.Date,req.params.maxDate)
+        .input('range',sql.Int,req.params.range)
+        .input('tag',sql.NVarChar(50),req.params.tag)
+        .input('latGPS' , sql.Float ,req.params.latGPS)
+        .input('longGPS' , sql.Float ,req.params.longGPS)
         .execute('getMapPosts');
         return result;
     }
