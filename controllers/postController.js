@@ -21,7 +21,9 @@ class postController{
       }
     }
     async getPost(req,res){
+        console.log("good 1")
         try {
+        console.log("good 2")
             const result = await postRepo.getPost(req);
             res.json(result.recordset);
         }

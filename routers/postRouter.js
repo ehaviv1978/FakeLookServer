@@ -9,15 +9,15 @@ postRouter.use(authMiddleware);
 
 postRouter.get('/' , postController.getAllPosts);
 postRouter.post('/', postController.addPost);
+postRouter.get('/search/:searchParams',postController.searchPosts);
 postRouter.get('/:postId',postController.getPost);
 postRouter.get('/:postId/comments' , commentController.getAllComments);
 postRouter.post('/:postId/comments' , commentController.addComment);
 postRouter.get('/:postId/likes' , postLikeController.getPostLikes);
 postRouter.post('/:postId/likes',postLikeController.addPostLike);
 postRouter.delete('/:postId/likes',postLikeController.removePostLike);
-
-router.delete('/:commentId/likes',commentController.removeCommentLike);
-router.get('/:commentId/likes',commentController.addCommentLike);
+postRouter.delete('/comments/:commentId/likes',commentController.removeCommentLike);
+postRouter.get('/comments/:commentId/likes',commentController.addCommentLike);
 
 
 // router.delete('/api/comments/:commentId/:userId',commentController.removeCommentLike);

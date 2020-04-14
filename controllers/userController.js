@@ -1,4 +1,5 @@
 const  userRepo  = require('../dal/userRepository')
+const bcrypt = require('bcryptjs');
 
 class userController{
     async getAllUsers(req,res){
