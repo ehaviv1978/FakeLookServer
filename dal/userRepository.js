@@ -36,13 +36,8 @@ class userRepository{
     async changePassword(req){
         const pool = await poolPromise;
         const result = await pool.request()
-<<<<<<< HEAD
-        .input('userId',sql.Int,req.params.id)
-        .input('password',sql.VarChar(30),req.body.password)
-=======
         .input('userId', sql.Int, req.userId)
         .input('password',sql.VarChar(sql.MAX),req.body.password)
->>>>>>> 2976063f
         .execute('updatePassword');
         return result;
     }

@@ -2,7 +2,6 @@ const { sql,poolPromise } = require('./SQLconnection');
 
 class commentRepository{
     async getAllComments(req){
-        console.log(req);
         const pool = await poolPromise;
         const result = await pool.request()
         .input('userId' , sql.Int ,req.userId)
