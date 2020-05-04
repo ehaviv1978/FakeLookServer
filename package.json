@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app"
-
   },
   "keywords": [],
   "author": "",
@@ -14,7 +13,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "msnodesqlv8": "^0.8.6",
-    "mssql": "^6.0.1"
+    "msnodesqlv8": "^1.1.2",
+    "mssql": "^6.0.1",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
   }
 }

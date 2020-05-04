@@ -3,6 +3,25 @@ const app = express();
 const router = require('./routes/route');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerOptions ={
+    swaggerDefinition:{
+        info: {
+            title: 'FakeLook API',
+            description: 'FakeLook server API\'s Information',  
+            contact: {
+                name: 'Eran Haviv'
+            },
+            servers: ["http://localhost:8888"]
+        }
+    },
+    apis: ['./routes/route.js']
+}
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 app.use(cors());

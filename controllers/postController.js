@@ -9,7 +9,7 @@ class postController {
                     record.postTags = record.postTags.split(',');
                 }
             }
-            res.json(result.recordset);
+            res.status(200).json(result.recordset);
         }
         catch (error) {
             res.status(500)
