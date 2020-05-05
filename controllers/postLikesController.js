@@ -1,16 +1,16 @@
 const postLikeRepo = require('../dal/postLikesRepository')
 
 class commentController{
-    async getPostLikes(req,res){
-        try{
-          const result = await postLikeRepo.getPostLikes(req);
-          res.json(result.recordset);
-        }
-        catch(error){
-            res.status(500)
-            res.send(error.message)
-        }
-    }
+    // async getPostLikes(req,res){
+    //     try{
+    //       const result = await postLikeRepo.getPostLikes(req);
+    //       res.status(200).json(result.recordset);
+    //     }
+    //     catch(error){
+    //         res.status(500)
+    //         res.send(error.message)
+    //     }
+    // }
     async addPostLike(req,res){
         try {
             const result = await postLikeRepo.addPostLike(req);

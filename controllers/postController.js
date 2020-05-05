@@ -19,7 +19,7 @@ class postController {
     async addPost(req, res) {
         try {
             const result = await postRepo.addPost(req);
-            res.send(result.rowsAffected);
+            res.status(201).send(result.rowsAffected);
         }
         catch (error) {
             res.status(500)
@@ -28,7 +28,7 @@ class postController {
     }
     async getPost(req, res) {
         try {
-            const result = await postRepo.getPost(req.body);
+            const result = await postRepo.getPost(req);
             if (result.recordset[0].postTags != null) {
                 result.recordset[0].postTags = result.recordset[0].postTags.split(',');
             }

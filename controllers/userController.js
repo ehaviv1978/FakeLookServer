@@ -12,7 +12,6 @@ class userController{
         }
     }
     async userLogIn(req,res){
-        //console.log(req);
         try{
             const result = await userRepo.userLogIn(req.body);
             res.status(202).json(result.recordset);
@@ -68,7 +67,7 @@ class userController{
     async changePassword(req, res){
         try{
             const result = await userRepo.changePassword(req);
-            res.json(result.rowsAffected);
+            res.status(202).json(result.rowsAffected);
         }
         catch(error){
             res.status(500);
