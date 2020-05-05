@@ -81,6 +81,28 @@ class postController {
             res.send(error.message);
         }
     }
+
+    async addPostLike(req,res){
+        try {
+            const result = await postRepo.addPostLike(req);
+            res.json(result);
+        } 
+        catch (error) {
+          res.status(500)
+          res.send(error.message)
+      }
+    }    
+    
+    async removePostLike(req,res){
+        try {
+            const result = await postRepo.removePostLike(req);
+            res.json(result);
+        } 
+        catch (error) {
+          res.status(500)
+          res.send(error.message)
+      }
+    }
 }
 const controller = new postController()
 module.exports = controller;
