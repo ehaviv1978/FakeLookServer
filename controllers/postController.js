@@ -16,6 +16,7 @@ class postController {
             res.send(error.message)
         }
     }
+
     async addPost(req, res) {
         try {
             const result = await postRepo.addPost(req);
@@ -26,6 +27,7 @@ class postController {
             res.send(error.message)
         }
     }
+
     async getPost(req, res) {
         try {
             const result = await postRepo.getPost(req);
@@ -39,10 +41,11 @@ class postController {
             res.send(error.message)
         }
     }
+
     async searchPosts(req, res) {
         try {
             const result = await postRepo.SearchPosts(req);
-            res.json(result.recordset);
+            res.status(200).json(result.recordset);
         }
         catch (error) {
             res.status(500);
@@ -53,7 +56,7 @@ class postController {
     async addPostTag(req, res) {
         try {
             const result = await postRepo.addPostTag(req);
-            res.json(result.rowsAffected);
+            res.status(201).json(result.rowsAffected);
         }
         catch (error) {
             res.status(500);

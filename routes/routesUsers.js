@@ -79,6 +79,7 @@ router.post('/api/users/addUser', userController.addUser);
 * @swagger
 * /api/users/search/{searchParams}:
 *  get:
+*    summary: Search user by name
 *    description: search user by first and last name
 *    parameters:
 *        - in: path

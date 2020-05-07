@@ -6,7 +6,7 @@ class postRepository {
         const pool = await poolPromise;
         const result = await pool.request()
             .input('userId', sql.Int, req.params.userId)
-            .execute('allPosts');
+            .execute('allPosts'); 
         return result;
     }
 
@@ -18,6 +18,7 @@ class postRepository {
             .input('longGPS', sql.Float, req.body.longGPS)
             .input('picture', sql.VarChar(sql.MAX), req.body.picture)
             .input('description', sql.VarChar(200), req.body.description)
+            .input('timePosted', sql.DateTime, req.body.timePosted)
             .execute('addPost')
         return result;
     }
