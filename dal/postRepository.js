@@ -43,7 +43,7 @@ class postRepository {
     async addPostTag(req) {
         const pool = await poolPromise;
         const result = await pool.request()
-            .input('postId', sql.Int, req.params.id)
+            .input('postId', sql.Int, req.params.postId)
             .input('tagContent', sql.VarChar(50), req.body.tagContent)
             .execute('addPostTag');
         return result;
@@ -52,7 +52,7 @@ class postRepository {
     async deletePostTag(req) {
         const pool = await poolPromise;
         const result = await pool.request()
-            .input('postId', sql.Int, req.params.id)
+            .input('postId', sql.Int, req.params.postId)
             .input('tagContent', sql.VarChar(50), req.body.tagContent)
             .execute('removePostTag');
         return result;

@@ -8,6 +8,7 @@ const router = express.Router();
 * @swagger
 * /api/users:
 *  get:
+*    summary: get all users name + userId.
 *    description: use to request all register users first and last name + userId
 *    responses:
 *       '200': 
@@ -19,6 +20,7 @@ router.get('/api/users', userController.getAllUsers);
 * @swagger
 * /api/users/{id}:
 *  get:
+*    summary: get user info.
 *    description: get all user paramaters by user ID number
 *    parameters:
 *        - in: path
@@ -37,8 +39,8 @@ router.get('/api/users/:id', userController.getUserById);
 * @swagger
 * /api/users/addUser:
 *  post:
-*       description: add new user to data base
 *       summary: Creates a new user.
+*       description: add new user to data base
 *       consumes:
 *        - application/json
 *       parameters:

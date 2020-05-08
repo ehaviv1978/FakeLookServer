@@ -100,7 +100,7 @@ router.post('/api/posts/:postId/:userId', postController.addPostLike);
 *          description: the user Id.
 *    responses:
 *       '201': 
-*           description: post like add
+*           description: post like removed
 */
 router.delete('/api/posts/:postId/:userId', postController.removePostLike);
 
@@ -122,7 +122,7 @@ router.delete('/api/posts/:postId/:userId', postController.removePostLike);
 *          description: the user Id.
 *    responses:
 *       '201': 
-*           description: post like add
+*           description: a sacsesful response
 */
 router.get('/api/posts/:userId/:postId', postController.getPost);
 
@@ -145,18 +145,84 @@ router.get('/api/posts/:userId/:postId', postController.getPost);
 */
 router.get('/api/posts/search/posts/:searchParams', postController.searchPosts);
 
+/** 
+* @swagger
+* /api/posts/getMapPosts/{minLat}/{maxLat}/{minLong}/{maxLong}/{userId}/{minDate}/{maxDate}/{range}/{tag}/{latGPS}/{longGPS}:
+*  get:
+*    summary: get filtered posts for map.
+*    description: get filtered posts to show on map view by a user.
+*    parameters:
+*        - in: path
+*          name: minLat 
+*          required: true
+*          type: number
+*          description: minimum gps map latitude.
+*        - in: path
+*          name: maxLat 
+*          required: true
+*          type: number
+*          description: maximum gps map latitude.
+*        - in: path
+*          name: minLong 
+*          required: true
+*          type: number
+*          description: minimum gps map longitude.
+*        - in: path
+*          name: maxLong 
+*          required: true
+*          type: number
+*          description: maximum gps map longitude.
+*        - in: path
+*          name: userId 
+*          required: true
+*          type: number
+*          description: filter posts by this user id (type 0 for no user id filter).
+*        - in: path
+*          name: minDate 
+*          required: true
+*          type: string
+*          description: minimum posted date.
+*        - in: path
+*          name: maxDate 
+*          required: true
+*          type: string
+*          description: maximum posted date.
+*        - in: path
+*          name: range 
+*          required: true
+*          type: number
+*          description: maximum post range by km from center point.
+*        - in: path
+*          name: tag 
+*          required: true
+*          type: string
+*          description: tags to filter posts by (type ~~~~ for no tag filter).
+*        - in: path
+*          name: latGPS 
+*          required: true
+*          type: number
+*          description: gps latitude of center post search radius.
+*        - in: path
+*          name: longGPS 
+*          required: true
+*          type: number
+*          description: gps longitude of center post search radius.
+*    responses:
+*       '200': 
+*           description: a sacsesful response
+*/
 router.get('/api/posts/getMapPosts/:minLat/:maxLat/:minLong/:maxLong/:userId/:minDate/:maxDate/:range/:tag/:latGPS/:longGPS',
 postController.getMapPosts);
 
 /** 
 * @swagger
-* /api/posts/tag/add/{id}:
+* /api/posts/tag/add/{postId}:
 *  post:
 *    summary: add post tag.
 *    description: add tage to post by post id
 *    parameters:
 *        - in: path
-*          name: id
+*          name: postId
 *          required: true
 *          type: string
 *          minimum: 1
@@ -175,17 +241,17 @@ postController.getMapPosts);
 *       '201': 
 *           description: post tag add
 */
-router.post('/api/posts/tag/add/:id', postController.addPostTag);
+router.post('/api/posts/tag/add/:postId', postController.addPostTag);
 
 /** 
 * @swagger
-* /api/posts/tag/remove/{id}:
+* /api/posts/tag/remove/{postId}:
 *  post:
 *    summary: remove post tag.
 *    description: remove tage to post by post id
 *    parameters:
 *        - in: path
-*          name: id
+*          name: postId
 *          required: true
 *          type: string
 *          minimum: 1
@@ -202,9 +268,9 @@ router.post('/api/posts/tag/add/:id', postController.addPostTag);
 *                type: string
 *    responses:
 *       '201': 
-*           description: post tag add
+*           description: post tag removed
 */
-router.post('/api/posts/tag/remove/:id', postController.deletePostTag);
+router.post('/api/posts/tag/remove/:postId', postController.deletePostTag);
 
 //router.get('/api/posts/likes/:postId', postLikeController.getPostLikes);
 

@@ -41,7 +41,7 @@ class commentRepository{
     async addCommentTag(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('commentId',sql.Int,req.params.id)
+        .input('commentId',sql.Int,req.params.commentId)
         .input('tagContent',sql.VarChar(50),req.body.tagContent)
         .execute('addCommentTag');
         return result;
@@ -50,7 +50,7 @@ class commentRepository{
     async deleteCommentTag(req){
         const pool = await poolPromise;
         const result = await pool.request()
-        .input('commentId',sql.Int,req.params.id)
+        .input('commentId',sql.Int,req.params.commentId)
         .input('tagContent',sql.VarChar(50),req.body.tagContent)
         .execute('removeCommentTag');
         return result;
